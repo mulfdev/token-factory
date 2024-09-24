@@ -7,15 +7,14 @@ import "../src/BridgeNFT.sol";
 contract MintBridgeNFT is Script {
     function run() public {
         uint256 privateKey = vm.envUint("PRIVATE_KEY");
-        address contractAddress = 0x3fDF6968C4e2Fa70bb74b58671046d6EBE717E62;
         address deployerAddress = vm.addr(privateKey);
-        address recipient = 0x1279874A02eEBA3fBEAe83BA7fbe3f3Aa60bfF3e;
+        address contractAddress = 0x935823a204874dA68023f073d61bCD759Ff267Af;
 
         vm.startBroadcast(privateKey);
 
-        BridgeNFT bridgeNFT = new BridgeNFT(contractAddress);
+        BridgeNFT bridgeNFT = BridgeNFT(contractAddress);
 
-        bridgeNFT.safeMint(recipient);
+        bridgeNFT.safeMint(deployerAddress);
 
         vm.stopBroadcast();
     }

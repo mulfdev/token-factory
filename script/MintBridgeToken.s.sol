@@ -7,7 +7,7 @@ import "../src/BridgeToken.sol";
 contract MintBridgeToken is Script {
     function run() public {
         uint256 deployerKey = vm.envUint("PRIVATE_KEY");
-        address contractAddress = 0xabC2e4f0E598DfF57f95aECe848bEd7f669A6dBC;
+        address contractAddress = 0x8cd532eB2e94d3A055A740E7601605bCCB5c5Db1;
         address recipient = 0x1279874A02eEBA3fBEAe83BA7fbe3f3Aa60bfF3e;
 
         uint256 unformattedAmt = 4;
@@ -18,5 +18,7 @@ contract MintBridgeToken is Script {
         BridgeToken bridgeToken = BridgeToken(contractAddress);
 
         bridgeToken.mint(recipient, formattedAmt);
+
+        vm.stopBroadcast();
     }
 }

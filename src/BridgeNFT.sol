@@ -10,14 +10,20 @@ contract BridgeNFT is ERC721, ERC721URIStorage, Ownable {
     using Strings for uint256;
 
     uint256 private _nextTokenId = 1;
+    uint256 private _totalSupply;
     string private constant BASE_TOKEN_URI = "https://media.mulf.wtf/nftmedia/";
 
     constructor(
         address initialOwner
     ) ERC721("BridgeNFT", "BFT") Ownable(initialOwner) {}
 
+    function totalSupply() public view returns (uint256) {
+        return _totalSupply;
+    }
+
     function safeMint(address to) public onlyOwner {
         uint256 tokenId = _nextTokenId++;
+        _totalSupply++;
 
         require(tokenId <= 5, "Only 5 tokens allowed");
 
